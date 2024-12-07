@@ -2,8 +2,9 @@
 import AppLayout from '@/Layouts/AppLayout.vue';
 import Welcome from '@/Components/Welcome.vue';
 defineProps({
-  servicerecords: Array //array data 
+  service_records: Array //array data 
 });
+
 </script>
 
 <template>
@@ -30,11 +31,11 @@ defineProps({
                         </thead>
                         <tbody>
                         
-                            <tr v-for="servicerecord in servicerecords" :key="servicerecord.id">
-                                <td>{{ servicerecord.employee_name }}</td>
-                                <td>{{ servicerecord.department_name }}</td>
-                                <td>{{ servicerecord.start_date }}</td>
-                                  <td>{{ servicerecord.end_date }}</td>
+                            <tr v-for="service_record in service_records" :key="service_record.id">
+                                <td>{{ service_record.employee.employee_name }}</td>
+                                <td>{{ service_record.department.department_name }}</td>
+                                <td>{{ service_record.start_date }}</td>
+                                  <td>{{ service_record.end_date }}</td>
                                
                             </tr>
                         </tbody>

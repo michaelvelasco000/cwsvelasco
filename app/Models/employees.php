@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class employees extends Model
+class Employees extends Model
 {
     use HasFactory;
     protected $table = 'employees';
@@ -15,7 +15,12 @@ class employees extends Model
         'gender',
         'department_id',
     ];
-    public function user() {
-        return $this->belongsTo(User::class);
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
+    public function serviceRecords()
+    {
+        return $this->hasMany(ServiceRecords::class);
     }
 }

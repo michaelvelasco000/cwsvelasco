@@ -41,7 +41,7 @@ const validationErrors = reactive({
 });
 
 function submit() {
-  router.post('/updateemployee', form, {
+  router.post('/add_update_employee', form, {
     onError: (errors) => {
       // Update the reactive validationErrors object
       validationErrors.employee_name = errors.employee_name || null;
@@ -96,7 +96,7 @@ function submit() {
                     </div>
 
                 <div>
-              <InputLabel for="department_id">Gender:</InputLabel>
+              <InputLabel for="department_id">Department:</InputLabel>
                 <select v-model="form.department_id" id="department_id">
                     <option 
                         v-for="department in departments" 

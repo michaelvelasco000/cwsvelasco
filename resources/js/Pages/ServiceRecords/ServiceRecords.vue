@@ -2,7 +2,7 @@
 import AppLayout from '@/Layouts/AppLayout.vue';
 import { Link } from '@inertiajs/vue3';
 defineProps({
-  servicerecords: Array //array data 
+  service_records: Array //array data 
 });
 </script>
 
@@ -34,14 +34,14 @@ defineProps({
                             </tr>
                         </thead>
                         <tbody>
-                        
-                            <tr v-for="(servicerecord,index) in servicerecords" :key="servicerecord.id">
+                        <!-- looping the data for table -->
+                            <tr v-for="(service_record,index) in service_records" :key="service_record.id">
                                   <td>{{ index + 1 }}</td> 
-                                <td>{{ servicerecord.employee_name }}</td>
-                                <td>{{ servicerecord.department_name }}</td>
-                                <td>{{ servicerecord.start_date }}</td>
-                                  <td>{{ servicerecord.end_date }}</td>
-                                <td v-if="!servicerecord.end_date"><Link :href="route('endservice', { id: servicerecord.id })"  class="text-blue-500 hover:text-blue-700"> End Service</Link></td>
+                                <td>{{ service_record.employee.employee_name }}</td>
+                                <td>{{ service_record.department.department_name }}</td>
+                                <td>{{ service_record.start_date }}</td>
+                                  <td>{{ service_record.end_date }}</td>
+                                <td v-if="!service_record.end_date"><Link :href="route('end_service', { id: service_record.id })"  class="text-blue-500 hover:text-blue-700"> End Service</Link></td>
                                 <td v-else></td>
                             </tr>
                         </tbody>

@@ -28,9 +28,9 @@ const validationErrors = reactive({
   department_name: null,
 });
 
-
+// submit the data to 
 function submit() {
-  router.post('/addupdatedepartment', form, {
+  router.post('/add_update_department', form, {
     onError: (errors) => {
       // Update the reactive validationErrors object
       validationErrors.department_name = errors.department_name || null;

@@ -15,4 +15,13 @@ class ServiceRecords extends Model
         'start_date',
         'end_date',
     ];
+    public function employee()
+    {
+        return $this->belongsTo(Employees::class);
+    }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
 }

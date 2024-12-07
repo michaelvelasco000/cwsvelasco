@@ -6,6 +6,8 @@ import { router } from '@inertiajs/vue3'
 defineProps({
   departments: Array //array data 
 });
+
+// sweet alert for the confirmation promt to delete department 
 const confirmDelete = (id) => {
   Swal.fire({
     title: "Are you sure you want to delete Department?",
@@ -17,7 +19,7 @@ const confirmDelete = (id) => {
     confirmButtonText: "Yes!"
   }).then((result) => {
     if (result.isConfirmed) {
-      router.delete(`/deletedepartments/${id}`, {
+      router.delete(`/delete_departments/${id}`, {
         onSuccess: () => {
           Swal.fire("Deleted!", "The department has been deleted.", "success");
         }
@@ -34,7 +36,7 @@ const confirmDelete = (id) => {
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                     Department
                 </h2>
-                <Link :href="route('departmentform')" class="text-blue-500 hover:text-blue-700">
+                <Link :href="route('department_form')" class="text-blue-500 hover:text-blue-700">
                     Add Department
                 </Link>
             </div>
@@ -58,10 +60,11 @@ const confirmDelete = (id) => {
                             <tr v-if="departments.length === 0">
                                 <td colspan="4" class="mt-4 text-center font-semibold text-xl text-gray-800 leading-tight"><strong>No data</strong></td>
                             </tr>
+                               <!-- loopong the data for table -->
                             <tr v-for="(department, index)  in departments" :key="department.id">
                                <td>{{ index + 1 }}</td> 
                                 <td>{{ department.department_name }}</td>
-                                <td><Link :href="route('editdepartment', { id: department.id })" class="text-blue-500 mx-2 hover:text-blue-700"> <i class="bi bi-pencil-square"></i></Link>
+                                <td><Link :href="route('edit_department', { id: department.id })" class="text-blue-500 mx-2 hover:text-blue-700"> <i class="bi bi-pencil-square"></i></Link>
                                   <button @click="confirmDelete(department.id)" class="text-red-500 hover:underline"><i class="bi bi-trash3-fill"></i></button>
                                 
                                 </td>

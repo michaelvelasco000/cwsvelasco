@@ -7,6 +7,7 @@ defineProps({
   employees: Array //array data 
 });
 
+// sweet alert for the confirmation promt to delete employee 
 const confirmDelete = (id) => {
   Swal.fire({
     title: "Are you sure to delete Employee?",
@@ -18,7 +19,7 @@ const confirmDelete = (id) => {
     confirmButtonText: "Yes!"
   }).then((result) => {
     if (result.isConfirmed) {
-      router.delete(`/deleteemployees/${id}`, {
+      router.delete(`/delete_employees/${id}`, {
         onSuccess: () => {
           Swal.fire("Deleted!", "The employee has been deleted.", "success");
         }
@@ -35,7 +36,7 @@ const confirmDelete = (id) => {
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                     Employee
                 </h2>
-                <Link :href="route('employeeform')" class="text-blue-500 hover:text-blue-700">
+                <Link :href="route('employee_form')" class="text-blue-500 hover:text-blue-700">
                     Add Employee
                 </Link>
             </div>
@@ -60,12 +61,13 @@ const confirmDelete = (id) => {
                          <tr v-if="employees.length === 0">
                                 <td colspan="4" class="text-center font-semibold text-xl text-gray-800 leading-tight"><strong>No data</strong></td>
                         </tr>
+                        <!-- looping the data for table -->
                             <tr v-for="employee in employees" :key="employee.id">
                                 <td>{{ employee.employee_name }}</td>
-                                <td>{{ employee.department_name }}</td>
+                                <td>{{ employee.department?.department_name || '' }}</td>
                                 <td>{{ employee.age }}</td>
                                 <td>{{ employee.gender }}</td>
-                                <td>   <Link :href="route('editemployee', { id: employee.id })" class="text-blue-500 mx-2 hover:text-blue-700"><i class="bi bi-pencil-square"></i></Link>
+                                <td>   <Link :href="route('edit_employee', { id: employee.id })" class="text-blue-500 mx-2 hover:text-blue-700"><i class="bi bi-pencil-square"></i></Link>
                                 
                                 <button @click="confirmDelete(employee.id)" class="text-red-500 hover:underline"><i class="bi bi-trash3-fill"></i></button>
                                 </td>
